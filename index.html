@@ -5,8 +5,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <title>Crystals Collector!</title>
@@ -14,129 +15,140 @@
 
 <body>
     <div class="body-container">
-
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
+        <div class="div-background">
+           
+                <div class="container">
+                     <img id= "background"src="./assets/images/crystal-mine.jpg" alt="jumbotron background image of crytal mine">
+            <div class="jumbotron jumbotron-fluid">
                 <h1 class="display-4">Crystal Collector</h1>
-                <p class="lead">You will be given a random number at the start of the game.
-                </p>
-                <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to
-                    your toatal score.</p>
-                <p>You win the game b matching your total score to random number, you lose the game if your total score
-                    goes above the random number.</p>
-                <p>The value of each crystal is hidden from you until you click on it.</p>
-                <p>Each time when the game starts, the game will change the values of the crystal.</p>
+                    
+                    <p class="lead">You will be given a random number at the start of the game.
+                    </p>
+                    <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points
+                        to
+                        your toatal score.</p>
+                    <p>You win the game b matching your total score to random number, you lose the game if your total
+                        score
+                        goes above the random number.</p>
+                    <p>The value of each crystal is hidden from you until you click on it.</p>
+                    <p>Each time when the game starts, the game will change the values of the crystal.</p>
+                </div>
             </div>
         </div>
+
         <div class="content-container">
             <div class="row">
-<div class="col-lg-12"><h1 id="opponent"></h1></div>
+                <!--Target score to match-->
+                <div class="col-lg-12">Try to ADD up to this Number!!!<h1 id="target"></h1>
+                </div>
             </div>
             <div class="row">
-                <!--score to match in order to win-->
-                <div class="col-lg-4" id="score">
-
-                </div>
                 <!--win losses counter-->
-                <div class="col-lg-3">WINS <h1 id="wins"></h1></div>
-            
-                <div class="col-lg-3">LOSSES <h1 id="loses"></h1></div>
+                <div class="col-lg-3 wins">WINS <h1 id="wins"></h1>
+                </div>
+
+                <div class="col-lg-3 loses">LOSSES <h1 id="loses"></h1>
+                </div>
             </div>
             <!--holds the columns of 4 jewels-->
             <div class="row">
                 <div class="col-lg-3">
-                    <span id="jewel1"><img src="./assets/images/daimond.gif" alt="daimond GIF" height="200px" width="200px"></span>
+                    <span id="jewel1"><img src="./assets/images/daimond.gif" alt="daimond GIF" height="200px"
+                            width="200px"></span>
                 </div>
                 <div class="col-lg-3">
-                    <span id="jewel2"><img src="./assets/images/pink daimond.gif" alt="pink diamond GIF" height="200px" width="200px"></span>
+                    <span id="jewel2"><img src="./assets/images/pink daimond.gif" alt="pink diamond GIF" height="200px"
+                            width="200px"></span>
                 </div>
                 <div class="col-lg-3">
-                    <span id="jewel3"><img src="./assets/images/ruby.gif" alt="ruby GIF" height="200px" width="200px"></span>
+                    <span id="jewel3"><img src="./assets/images/ruby.gif" alt="ruby GIF" height="200px"
+                            width="200px"></span>
                 </div>
                 <div class="col-lg-3">
-                    <span id="jewel4"><img src="./assets/images/saphire.gif" alt="saphire GIF" height="200px" width="200px"></span>
+                    <span id="jewel4"><img src="./assets/images/saphire.gif" alt="saphire GIF" height="200px"
+                            width="200px"></span>
                 </div>
             </div>
             <div class="row">
+                <!--Holds your total score to match computer's generated score-->
                 <div class="col-lg-12">
                     Your total score is: <h1 id="totals"></h1>
-                    
-                </div>
-            </div>
-            <!--Holds your total score to match computer's generated score-->
-            <div class="row">
-                <div class="col-lg-12">
-                    <p id="your-score"></p>
+
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <script type="text/javascript">
 
-        $(document).ready(function() {
-        
-                var total = 0;
-                var win = 0;
-                var lost = 0;
-                var randomNum = 0;
-                var jewelOne = 0;
-                var jewelTwo = 0;
-                var jewelThree = 0;
-                var jewelFour = 0;
-        
-        newGame()
-        
-                function newGame() {
-                    randomNum = Math.floor((Math.random() * 102) + 19);
-                    jewelOne = Math.floor((Math.random() * 12) + 1);
-                    jewelTwo = Math.floor((Math.random() * 12) + 1);
-                    jewelThree = Math.floor((Math.random() * 12) + 1);
-                    jewelFour = Math.floor((Math.random() * 12) + 1);
-                    $("#opponent").text(randomNum);
-        
-                  total = 0;
-        
-                   $("#wins").text(win);
+        $(document).ready(function () {
+
+            $(document).mouseover(function () {
+                $(".col-lg-3").effect("bounce", "slow");
+            })
+
+
+            var total = 0;
+            var win = 0;
+            var lost = 0;
+            var randomNum = 0;
+            var jewelOne = 0;
+            var jewelTwo = 0;
+            var jewelThree = 0;
+            var jewelFour = 0;
+
+            newGame()
+
+            function newGame() {
+                randomNum = Math.floor((Math.random() * 102) + 19);
+                jewelOne = Math.floor((Math.random() * 12) + 1);
+                jewelTwo = Math.floor((Math.random() * 12) + 1);
+                jewelThree = Math.floor((Math.random() * 12) + 1);
+                jewelFour = Math.floor((Math.random() * 12) + 1);
+                $("#target").text(randomNum);
+
+                total = 0;
+
+                $("#wins").text(win);
+                $("#loses").text(lost);
+            }
+            function update() {
+                if (total === randomNum) {
+                    win++;
+                    $("#wins").text(wins);
+                    newGame();
+                } else if (total > randomNum) {
+                    lost++;
                     $("#loses").text(lost);
+                    newGame()
                 }
-                function update() {
-                    if (total === randomNum) {
-                        win++;
-                        $("#wins").text(wins);
-                        newGame();
-                    } else if(total >randomNum){
-                        lost++;
-                        $("#loses").text(lost);
-                        newGame()
-                    }
-                }
-                    $("#jewel1").on("click", function() {
-                        total = total + jewelOne;
-                        $("#totals").text(total)
-                        update()
-                    });
-                   $("#jewel2").on("click", function() {
-                        total = total + jewelFour;
-                        $("#totals").text(total);
-                        update()
-                    });
-                    $("#jewel3").on("click", function() {
-                        total = total + jewelFour;
-                        $("#totals").text(total);
-                        update()
-                    });
-                    $("#jewel4").on("click", function() {
-                        total = total + jewelFour;
-                        $("#totals").text(total);
-                        update()
-                    }); 
+            }
+            $("#jewel1").on("click", function () {
+
+                total = total + jewelOne;
+                $("#totals").text(total)
+                update()
+
             });
-        
-              </script>
-        
-          </body>
-        
-          </html>
+            $("#jewel2").on("click", function () {
+                total = total + jewelFour;
+                $("#totals").text(total);
+                update()
+            });
+            $("#jewel3").on("click", function () {
+                total = total + jewelFour;
+                $("#totals").text(total);
+                update()
+            });
+            $("#jewel4").on("click", function () {
+                total = total + jewelFour;
+                $("#totals").text(total);
+                update()
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
